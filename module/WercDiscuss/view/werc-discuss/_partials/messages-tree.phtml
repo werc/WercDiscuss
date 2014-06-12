@@ -1,0 +1,32 @@
+<?php
+if($this->depth > 0) {
+    $format = ' style="margin-left:%sem"';
+    switch($this->depth){
+    	case 1:
+    	    $margin = '';
+    	    break;
+    	case 2:
+    	    $margin = sprintf($format, '1.4');
+    	    break;
+    	case 3:
+    	    $margin = sprintf($format, '2.8');
+    	    break;
+    	case 4:
+    	    $margin = sprintf($format, '4.2');
+    	default:
+    	    $margin = sprintf($format, '4.2');    
+    }    
+    $date = new \DateTime($this->post_time);
+    $stamp = $date->format('d.') . '&thinsp;' . $date->format('m.') . '&thinsp;' . $date->format('Y') . ', ' . $date->format('H:i');
+    
+    echo '<li'.$margin.'><h4><i class="glyphicon glyphicon-user text-muted"></i> &nbsp;&nbsp; ' . $this->escapehtml($this->author_name) . '</h4>';
+    echo '<span class="text-muted">' . $stamp . '</span>' . PHP_EOL;
+    
+    echo '<div class="brd"><p>' . $this->escapehtml($this->message) . '</p></div>' . PHP_EOL;
+    
+    echo "<p class=\"text-right\">
+             <a href=\"?reply=".$this->message_id."#comment\" rel=\"nofollow\" 
+             onclick=\"if (event.ctrlKey || event.shiftKey) return; document.getElementById('messageid').value = '".$this->message_id."'; 
+                       document.getElementById('reply-note').innerHTML = '/ " . $this->translate('to:') . ' ' . $this->escapehtml($this->author_name) . "'; 
+                       location.href = '#comment'; return false;\">" . $this->translate('Reply') . "</a></p></li>" . PHP_EOL;
+}

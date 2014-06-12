@@ -1,0 +1,54 @@
+<?php
+echo '<div id="discuss">';
+
+if (count($this->comments) > 0) {
+    echo '<h3>' . $this->translate('Discussion') . '</h3>';
+    echo '<ol class="list-unstyled">';    
+    echo $this->partialloop('werc-discuss/_partials/messages-tree', $this->comments);
+    echo '</ol>';
+}
+
+//echo $this->flashMessages();
+echo $this->flashMessenger()->render();
+
+echo '<h3 id="comment">' . $this->translate('Comments') . '<span id="reply-note"></span></h3><br>';
+
+$form = $this->form;
+$form->setAttribute('action', $this->formAction . '#comment')->prepare();
+echo $this->form()->openTag($form) . PHP_EOL;
+
+echo $this->formHidden($form->get('message_id')) . PHP_EOL;
+
+$hidden = $form->get('article_id');
+$hidden->setValue($this->articleId);
+echo $this->formHidden($hidden) . PHP_EOL;
+
+echo $this->formInput($form->get('csrf')) . PHP_EOL;
+
+echo '<div class="form-group">';
+$name = $form->get('author_name'); 
+echo $this->formLabel($name, $this->translate('Your name*'));
+echo $this->formElement($name);
+echo $this->formElementErrors($name);
+echo '</div>' . PHP_EOL;
+
+echo '<div class="form-group">';
+$email = $form->get('email');
+echo $this->formLabel($email, $this->translate('Your email*'));
+echo $this->formElement($email);
+echo $this->formElementErrors($email);
+echo '</div>' . PHP_EOL;
+
+echo '<div class="form-group">';
+$message = $form->get('message');
+echo $this->formLabel($message, $this->translate('Your message*'));
+echo $this->formElement($message);
+echo $this->formElementErrors($message);
+echo '</div>' . PHP_EOL;
+
+echo $this->formButton($form->get('save'), $this->translate('Submit Comment'));
+echo $this->form()->closeTag($form);
+
+echo '</div>';
+echo '<p class="text-right hidden-print"><i class="fa fa-angle-up"></i> 
+      <a href="#top" class="text-link">' . $this->translate('Top') . '</a></p>';
