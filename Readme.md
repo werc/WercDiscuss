@@ -1,6 +1,6 @@
 # WercDiscuss
 WercDiscuss is a ZF2 module for inserting comments under article. Comments are displayed in a tree structure based on tree traversal.
-Tree traversing is solved by mysql stored procedure. 
+Tree traversing is solved by mysql stored procedure. HTML and CSS uses Bootstrap 3.
 
 
 ## Display comments and form
