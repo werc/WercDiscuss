@@ -1,6 +1,7 @@
 # WercDiscuss
-WercDiscuss is a basic ZF2 module for inserting comments under article. Comments are displayed in a tree structure based on tree traversal.
-Tree traversing is solved by mysql stored procedure.
+WercDiscuss is a ZF2 module for inserting comments under article. Comments are displayed in a tree structure based on tree traversal.
+Tree traversing is solved by mysql stored procedure. 
+
 
 ## Display comments and form
 Just put view helper into .phtml view file:
@@ -25,9 +26,12 @@ if ($prg instanceof \Zend\Http\PhpEnvironment\Response) {
     }
 }
 ```
-Note the `$this->getDiscussService()` calls *discuss_service* in controller. 
+Note the `$this->getDiscussService()` calls **discuss_service** in controller. 
 Use controller factory or just call `$this->getServiceLocator()->get('discuss_service');`.
 
 ## Delete, update comment
 Methods for comment update or delete are ready in `WercDiscuss\Service\Discuss.php`. 
 Just call them in Your admin section for comment editing.
+
+
+Don't forget to insert module name into config file.
