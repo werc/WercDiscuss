@@ -34,7 +34,10 @@ class Discuss implements ServiceManagerAwareInterface
 
     public function getDiscussForm()
     {
-        return $this->discussForm;
+        $form = $this->discussForm;
+        $form->setInputFilter(new \WercDiscuss\Form\DiscussFilter());
+        
+        return $form;        
     }
 
     public function setDiscussMessages(DiscussMessagesTable $model)
@@ -54,7 +57,6 @@ class Discuss implements ServiceManagerAwareInterface
     public function addComment($post)
     {
         $form = $this->getDiscussForm();
-        $form->setInputFilter(new \WercDiscuss\Form\DiscussFilter());
         $form->setData($post);
         
         if (! $form->isValid()) {
@@ -99,7 +101,7 @@ class Discuss implements ServiceManagerAwareInterface
     {
         $form = $this->getDiscussForm();
         $form->remove('csrf');
-        $form->setInputFilter(new \Discuss\Form\DiscussFilter());
+        $form->remove('captcha');
         $form->setData($post);
         
         if (! $form->isValid()) {

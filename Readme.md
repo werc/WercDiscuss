@@ -11,7 +11,7 @@ echo $this->discusswidget($articleId, $discussFormAction);
 ```
 
 ## Insert comment
-In Your controller action:
+In controller action:
 ``` php
 // discuss
 $prg = $this->prg();
@@ -31,7 +31,7 @@ Use controller factory or just call `$this->getServiceLocator()->get('discuss_se
 
 ## Delete, update comment
 Methods for comment update or delete are ready in `WercDiscuss\Service\Discuss.php`. 
-Just call them in Your admin section for comment editing.
+Just call them in admin section (of your CMS) for comment editing.
 
 
 Don't forget to insert module name into config file.

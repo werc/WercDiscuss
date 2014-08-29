@@ -3,6 +3,7 @@ namespace WercDiscuss\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
+use Zend\Captcha;
 
 class Discuss extends Form
 {
@@ -38,6 +39,12 @@ class Discuss extends Form
         $message = new Element\Textarea('message');
         $message->setAttributes(array('class'=> 'form-control', 'rows' => 5));
         $this->add($message);
+        
+        $captcha = new Element\Captcha('captcha');
+        $figlet = new Captcha\Figlet();
+        $figlet->setWordlen(4);
+        $captcha->setCaptcha($figlet);
+        $this->add($captcha);
         
         $button = new Element\Button('save');
         $button->setAttributes(array(

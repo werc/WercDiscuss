@@ -46,6 +46,13 @@ echo $this->formElement($message);
 echo $this->formElementErrors($message);
 echo '</div>' . PHP_EOL;
 
+echo '<div class="form-group">';
+$captcha = $form->get('captcha');
+echo $this->formLabel($captcha, $this->translate('Verification  (case insensitive)*'));
+echo $this->formElement($captcha);
+echo $this->formElementErrors($captcha);
+echo '</div>' . PHP_EOL;
+
 echo $this->formButton($form->get('save'), $this->translate('Submit Comment'));
 echo $this->form()->closeTag($form);
 
