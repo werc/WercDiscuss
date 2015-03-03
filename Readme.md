@@ -32,5 +32,3 @@ Use controller factory or just call `$this->getServiceLocator()->get('discuss_se
 ## Delete, update comment
 Methods for comment update or delete are ready in `WercDiscuss\Service\Discuss.php`. 
 Just call them in admin section (of your CMS) for comment editing.
-
-Test

@@ -8,9 +8,14 @@ use Zend\Captcha;
 class Discuss extends Form
 {
 
-    function __construct()
+    function __construct($name = null, $options = array())
     {
-        parent::__construct();
+        parent::__construct($name, $options);
+        
+        $this->setAttributes(array(
+            'role' => 'form',
+            'id' => 'messageform'
+        ));
         
         $csrf = new Element\Csrf('csrf');
         $this->add($csrf);
@@ -18,14 +23,14 @@ class Discuss extends Form
         $messageId = new Element\Hidden('message_id');
         $messageId->setAttribute('id', 'messageid');
         $this->add($messageId);
-
+        
         $articleId = new Element\Hidden('article_id');
         $this->add($articleId);
         
         $name = new Element\Text('author_name');
         $name->setAttributes(array(
-                'required' => 'required',
-                'class' => 'form-control'
+            'required' => 'required',
+            'class' => 'form-control'
         ));
         $this->add($name);
         
@@ -36,15 +41,20 @@ class Discuss extends Form
         ));
         $this->add($email);
         
-        $message = new Element\Textarea('message');
-        $message->setAttributes(array('class'=> 'form-control', 'rows' => 5));
-        $this->add($message);
+        $antispam = new Element\Text('antispam');
+        $antispam->setAttributes(array(
+            'required' => 'required',
+            'class' => 'form-control'
+        ));
+        $this->add($antispam);
         
-        $captcha = new Element\Captcha('captcha');
-        $figlet = new Captcha\Figlet();
-        $figlet->setWordlen(4);
-        $captcha->setCaptcha($figlet);
-        $this->add($captcha);
+        $message = new Element\Textarea('message');
+        $message->setAttributes(array(
+            'class' => 'form-control',
+            'rows' => 5,
+            'required' => 'required'
+        ));
+        $this->add($message);
         
         $button = new Element\Button('save');
         $button->setAttributes(array(

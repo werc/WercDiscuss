@@ -39,18 +39,18 @@ echo $this->formElement($email);
 echo $this->formElementErrors($email);
 echo '</div>' . PHP_EOL;
 
+echo '<noscript><div class="form-group">';
+$antispam = $form->get('antispam');
+echo $this->formLabel($antispam, $this->translate('Type') . ' "<em>wdiscuss</em>":');
+echo $this->formElement($antispam);
+echo $this->formElementErrors($antispam);
+echo '</div></noscript>' . PHP_EOL;
+
 echo '<div class="form-group">';
 $message = $form->get('message');
 echo $this->formLabel($message, $this->translate('Your message*'));
 echo $this->formElement($message);
 echo $this->formElementErrors($message);
-echo '</div>' . PHP_EOL;
-
-echo '<div class="form-group">';
-$captcha = $form->get('captcha');
-echo $this->formLabel($captcha, $this->translate('Verification  (case insensitive)*'));
-echo $this->formElement($captcha);
-echo $this->formElementErrors($captcha);
 echo '</div>' . PHP_EOL;
 
 echo $this->formButton($form->get('save'), $this->translate('Submit Comment'));
@@ -59,3 +59,13 @@ echo $this->form()->closeTag($form);
 echo '</div>';
 echo '<p class="text-right hidden-print"><i class="fa fa-angle-up"></i> 
       <a href="#top" class="text-link">' . $this->translate('Top') . '</a></p>';
+?>
+<!-- JS version -->
+<script type="text/javascript">
+var form = document.forms.messageform;
+var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'antispam';
+    input.value = 'wdiscuss';
+    form.appendChild(input);
+</script>
