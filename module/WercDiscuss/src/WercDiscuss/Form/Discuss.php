@@ -12,6 +12,8 @@ class Discuss extends Form
     {
         parent::__construct($name, $options);
         
+        $this->setInputFilter(new DiscussFilter());
+        
         $this->setAttributes(array(
             'role' => 'form',
             'id' => 'messageform'

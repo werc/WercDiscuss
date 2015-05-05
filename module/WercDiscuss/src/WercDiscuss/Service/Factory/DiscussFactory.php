@@ -9,10 +9,12 @@ class DiscussFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        $formDiscuss = $serviceLocator->get('FormElementManager')->get('WercDiscuss\Form\Discuss');
+        
         $service = new Discuss();
-        $service->setDiscussModel($serviceLocator->get('discuss_table'));
-        $service->setDiscussMessages($serviceLocator->get('discuss_messages_table'));
-        $service->setDiscussForm($serviceLocator->get('discuss_form'));
+        $service->setDiscussModel($serviceLocator->get('WercDiscuss\Model\DiscussTable'));
+        $service->setDiscussMessages($serviceLocator->get('WercDiscuss\Model\DiscussMessagesTable'));
+        $service->setDiscussForm($formDiscuss);
         
         return $service;
     }

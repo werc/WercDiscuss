@@ -2,9 +2,7 @@
 namespace WercDiscuss\Model;
 
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Select;
 use WercDiscuss\Entity\DiscussMessages;
-use Zend\Db\TableGateway\AbstractTableGateway;
 
 class DiscussMessagesTable
 {
